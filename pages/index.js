@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -16,7 +15,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          A mental health app to help level yourself up.
+          An app designed to level up your mental health.
         </p>
 
         <div className={styles.grid}>
