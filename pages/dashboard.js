@@ -8,7 +8,7 @@ function Dashboard({ user }) {
 
 // This function gets called at build time
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts
+  // Call an external API endpoint to get user
   const res = await fetch(`${process.env.API_URL}/users/1`);
   const user = await res.json();
 
