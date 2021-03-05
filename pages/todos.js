@@ -18,8 +18,7 @@ function Todos({ todos }) {
               <p>XP: {todo.xp}</p> 
               <input type="checkbox" checked={todo.completed} />
             </div>
-          ))
-          }
+          ))}
         </div>
       </main>
     </div>
