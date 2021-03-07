@@ -21,6 +21,7 @@ function Todos() {
               <h3>{todo.description}</h3>
               <p>XP: {todo.xp}</p>
               <input type="checkbox" defaultChecked={todo.completed} />
+              {todo.dueDate && <p>Due: {todo.dueDate}</p>}
             </div>
           ))}
         </div>
