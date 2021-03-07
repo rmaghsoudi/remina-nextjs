@@ -11,7 +11,7 @@ function Todos({ todos }) {
 
         <div className={styles.grid}>
           {todos.map(todo => (
-            <div className={styles.card}>
+            <div key={todo.id} className={styles.card}>
               <h3>{todo.description}</h3>
               <p>XP: {todo.xp}</p> 
               <input type="checkbox" defaultChecked={todo.completed} />
@@ -26,7 +26,7 @@ function Todos({ todos }) {
 // This function gets called at build time
 export async function getStaticProps() {
   // Call an external API endpoint to get todos belonging to logged in user
-  const res = await fetch(`${process.env.API_URL}/todos?${new URLSearchParams({ user_id: 1 })}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todos?${new URLSearchParams({ user_id: 1 })}`);
   const todos = await res.json();
 
   // By returning { props: { todos } }, the Todos component
