@@ -1,7 +1,13 @@
+import { getTodos } from '../hooks/apiCalls'
 import styles from '../styles/Home.module.css'
 
-function Todos({ todos }) {
-  return(
+function Todos() {
+  const { todos, isLoading, isError } = getTodos(1)
+  // TODO: Create a <Loading /> and an <Error /> component
+  if (isLoading) return <div>We loading....</div>
+  if (isError) return <div>We ran into an Error :(</div>
+
+  return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
@@ -13,7 +19,7 @@ function Todos({ todos }) {
           {todos.map(todo => (
             <div key={todo.id} className={styles.card}>
               <h3>{todo.description}</h3>
-              <p>XP: {todo.xp}</p> 
+              <p>XP: {todo.xp}</p>
               <input type="checkbox" defaultChecked={todo.completed} />
             </div>
           ))}
@@ -23,19 +29,5 @@ function Todos({ todos }) {
   );
 }
 
-// This function gets called at build time
-export async function getStaticProps() {
-  // Call an external API endpoint to get todos belonging to logged in user
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/todos?${new URLSearchParams({ user_id: 1 })}`);
-  const todos = await res.json();
-
-  // By returning { props: { todos } }, the Todos component
-  // will receive `todos` as a prop at build time
-  return {
-    props: {
-      todos,
-    },
-  };
-}
 
 export default Todos

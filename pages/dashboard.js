@@ -1,8 +1,8 @@
-import getUser from '../hooks/apiCalls'
+import { getUser } from '../hooks/apiCalls'
 import styles from '../styles/Home.module.css'
 
 function Dashboard() {
-  const {user, isLoading, isError} = getUser(1)
+  const { user, isLoading, isError } = getUser(1)
   // TODO: Create a <Loading /> and an <Error /> component
   if (isLoading) return <div>We loading....</div>
   if (isError) return <div>We ran into an Error :(</div>
