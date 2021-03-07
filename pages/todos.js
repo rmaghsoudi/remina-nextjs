@@ -19,9 +19,9 @@ function Todos() {
           {todos.map(todo => (
             <div key={todo.id} className={styles.card}>
               <h3>{todo.description}</h3>
-              <p>XP: {todo.xp}</p>
+              <p>{todo.xp}XP</p>
+              {todo.dueDate && <p>{todo.dueDate}</p>}
               <input type="checkbox" defaultChecked={todo.completed} />
-              {todo.dueDate && <p>Due: {todo.dueDate}</p>}
             </div>
           ))}
         </div>
