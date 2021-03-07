@@ -1,6 +1,12 @@
+import getUser from '../hooks/apiCalls'
 import styles from '../styles/Home.module.css'
 
-function Dashboard({ user }) {
+function Dashboard() {
+  const {user, isLoading, isError} = getUser(1)
+  // TODO: Create a <Loading /> and an <Error /> component
+  if (isLoading) return <div>We loading....</div>
+  if (isError) return <div>We ran into an Error :(</div>
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -35,19 +41,19 @@ function Dashboard({ user }) {
   );
 }
 
-// This function gets called at build time
-export async function getStaticProps() {
-  // Call an external API endpoint to get user
-  const res = await fetch(`${process.env.API_URL}/users/1`);
-  const user = await res.json();
+// // This function gets called at build time
+// export async function getStaticProps() {
+//   // Call an external API endpoint to get user
+//   const res = await fetch(`${process.env.API_URL}/users/1`);
+//   const user = await res.json();
 
-  // By returning { props: { user } }, the Dashboard component
-  // will receive `user` as a prop at build time
-  return {
-    props: {
-      user,
-    },
-  };
-}
+//   // By returning { props: { user } }, the Dashboard component
+//   // will receive `user` as a prop at build time
+//   return {
+//     props: {
+//       user,
+//     },
+//   };
+// }
 
 export default Dashboard;
