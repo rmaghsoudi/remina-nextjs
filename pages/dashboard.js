@@ -15,7 +15,6 @@ function Dashboard() {
           A level {user.level} PLACEHOLDER <br />
           <label htmlFor="xp-bar">XP: </label>
           <progress id="xp-bar" max={user.xp_to_lvlup} value={user.xp}>
-            {" "}
             {user.xp}/{user.xp_to_lvlup}
           </progress>
         </p>

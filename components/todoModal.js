@@ -1,25 +1,43 @@
-import styles from '../styles/Home.module.css'
+import { Col } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
-function TodoModal({ todo }) {
-
+function TodoModal(props) {
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <form>
-          <label htmlFor="description" />
-          <input type="text" id="description" name="description" defaultValue={todo.description} required />
-          <label htmlFor="duedate" />
-          <input type="date" id="duedate" name="duedate" />
-          <label htmlFor="duetime" />
-          <input type="time" id="duetime" name="duetime" />
-          <label htmlFor="completed" />
-          <input type="checkbox" id="completed" name="completed" defaultChecked={todo.completed} />
-          <button type="submit">Submit &rarr;</button>
-        </form>
-      </div>
-    </div>
+    <>
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Edit Todo
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Row>
+              <Form.Control placeholder="Description" />
+            </Form.Row>
+            <Form.Row>
+              <Col>
+                <Form.Control type="date" />
+                <Form.Control type="time" />
+              </Col>
+              <Col>
+                <Form.Control type="checkbox" />
+              </Col>
+            </Form.Row>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }
-
-
-export default TodoModal
+export default TodoModal;
