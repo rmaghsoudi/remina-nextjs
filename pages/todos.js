@@ -3,6 +3,9 @@ import TodoModal from "../components/todoModal";
 import { getTodos } from "../hooks/apiCalls";
 import styles from "../styles/Home.module.css";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import CardDeck from 'react-bootstrap/CardDeck'
+import FormCheck from "react-bootstrap/FormCheck"
 
 function Todos() {
   const { todos, isLoading, isError } = getTodos(1);
@@ -15,20 +18,23 @@ function Todos() {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>Todos Page</h1>
-        <Button variant="primary">Add Todo &#43; </Button>
         <Button variant="primary" onClick={() => setModalShow(true)}>
-          Launch TodoModal
+          Add Todo &#43;
         </Button>
-        <div className={styles.grid}>
+        <CardDeck>
           {todos.map((todo) => (
-            <div key={todo.id} className={styles.card}>
-              <h3>{todo.description}</h3>
-              <p>{todo.xp}XP</p>
-              {todo.dueDate && <p>{todo.dueDate}</p>}
-              <input type="checkbox" defaultChecked={todo.completed} />
-            </div>
+            <Card style={{ width: '18rem' }} key={todo.id}>
+              <Card.Body>
+                <Card.Title>{todo.description}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{todo.xp}XP</Card.Subtitle>
+                {todo.dueDate && <Card.Subtitle className="mb-2 text-muted">{todo.dueDate}</Card.Subtitle>}
+                <FormCheck type="checkbox" label="Mark as done" />
+                <Card.Link><Button variant="secondary">Edit</Button></Card.Link>
+                <Card.Link><Button variant="danger">Delete</Button></Card.Link>
+              </Card.Body>
+            </Card>
           ))}
-        </div>
+        </CardDeck>
         <TodoModal show={modalShow} onHide={() => setModalShow(false)} />
       </main>
     </div>
